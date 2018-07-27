@@ -28,6 +28,61 @@ class Stack {
   }
 }
 
+const peek = stack => {
+  console.log(stack.top);
+};
+
+
+const display = stack => {
+  // const copy = stack;
+  // let stackStr = '';
+  //
+  // while (copy.top !== null) {
+  //   stackStr += `${copy.top.data} ->`;
+  // }
+  //
+  // return stackStr;
+
+  console.log(JSON.stringify(stack, null, 1));
+  return 1;
+};
+
+
+const remove = (value, stack) => {
+  if (stack.top === null) {
+    return;
+  }
+
+  while (stack.top !== null) {
+    const compareValue = stack.pop();
+    if (compareValue === value) {
+      return stack;
+    }
+  }
+}
+
+function is_palindrome(s) {
+    s = s.toLowerCase()
+          .replace(/[^a-zA-Z0-9]/g, "");
+
+    const stack = new Stack()
+    let palindrone = '';
+
+    for (let i = 0; i < s.length; i++) {
+      stack.push(s[i]);
+    }
+
+    while (stack.top !== null) {
+      palindrone += stack.pop();
+    }
+
+    if (palindrone === s) {
+      return true;
+    }
+    return false;
+
+}
+
 const main = () => {
   const starTrek = new Stack();
 
@@ -35,18 +90,16 @@ const main = () => {
   starTrek.push('Spock');
   starTrek.push('McCoy');
   starTrek.push('Scotty');
+  // starTrek.pop();
+  // starTrek.pop();
+  // console.log(display(starTrek));
+  // peek(starTrek);
+  // console.log(remove('McCoy', starTrek));
+  // console.log(display(starTrek));
+  console.log(is_palindrome('strrts'));
 
-  return starTrek;
+
+
 };
 
-const peek = stack => {
-  console.log(stack.top);
-};
-
-peek(main());
-
-const display = stack => {
-  console.log(JSON.stringify(stack, null, 1));
-};
-
-display(main());
+console.log(main());
