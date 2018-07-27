@@ -44,7 +44,7 @@ const display = stack => {
   // return stackStr;
 
   console.log(JSON.stringify(stack, null, 1));
-  return 1;
+  return ;
 };
 
 
@@ -59,7 +59,34 @@ const remove = (value, stack) => {
       return stack;
     }
   }
+};
+
+// input => 3((4 + 5) / 3)
+// input => ))(([]}}{{ -> true
+
+function matchingParens(exp) {
+  const stack = new Stack();
+  let counter = 0;
+
+  for (let i = 0; i < exp.length; i++) {
+    if (exp[i] === '(' || exp[i] === ')') {
+      stack.push(exp[i]);
+    }
+  }
+  while (stack.top !== null) {
+    if (stack.pop() === '(') {
+      counter++;
+    }
+    if (stack.pop() === ')') {
+      counter--;
+    }
+  }
+  if (counter === 0) {
+    return true;
+  }
+  return false;
 }
+console.log(matchingParens('(4 + 5)'));
 
 function is_palindrome(s) {
     s = s.toLowerCase()
@@ -80,7 +107,6 @@ function is_palindrome(s) {
       return true;
     }
     return false;
-
 }
 
 const main = () => {
